@@ -1,1 +1,33 @@
+spring:
+  application:
+    name: first-case
+  datasource:
+    url: jdbc:postgresql://localhost:5432/first-case
+    username: postgres
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    hbm2ddl:
+      auto: validate
+      naming_strategy: org.hibernate.cfg.DefaultNamingStrategy
+    properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          enable_lazy_load_no_trans: true
+          jdbc:
+            time_zone: UTC
+            lob.non_contextual_creation: true
+          default_schema: firstcase
+          format_sql: true
+  flyway:
+   locations: classpath:db/migration/
+   enabled: true
+   schemas: firstcase
 
+
+first-case:
+  app:
+    jwtSecret: ${JWT_SECRET:secret-local}
+    jwtExpirationMs: ${JWT_EXPIRATION_IN_MS:3600000}
