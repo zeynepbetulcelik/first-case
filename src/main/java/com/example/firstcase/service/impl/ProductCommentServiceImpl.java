@@ -1,6 +1,6 @@
-package com.example.firstcase.sevice.impl;
+package com.example.firstcase.service.impl;
 
-import com.example.firstcase.sevice.ProductCommentService;
+import com.example.firstcase.service.ProductCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

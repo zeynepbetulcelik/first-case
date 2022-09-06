@@ -1,7 +1,7 @@
 package com.example.firstcase.model.resource;
 
 import com.example.firstcase.model.dto.UserDTO;
-import com.example.firstcase.sevice.UserService;
+import com.example.firstcase.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

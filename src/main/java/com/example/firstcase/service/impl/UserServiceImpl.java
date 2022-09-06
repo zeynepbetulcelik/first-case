@@ -1,11 +1,10 @@
-package com.example.firstcase.sevice.impl;
+package com.example.firstcase.service.impl;
 
 import com.example.firstcase.data.UserRepository;
 import com.example.firstcase.model.dto.UserDTO;
 import com.example.firstcase.model.entity.User;
-import com.example.firstcase.sevice.UserService;
+import com.example.firstcase.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service

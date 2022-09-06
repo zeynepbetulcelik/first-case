@@ -1,4 +1,4 @@
-package com.example.firstcase.sevice;
+package com.example.firstcase.service;
 
 public interface ProductCommentService {
 }
