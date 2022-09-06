@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Table(name = "product_comment")
 @Getter
 @Setter
-public class ProductComment {
+public class ProductComment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,8 +21,8 @@ public class ProductComment {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "comment_created_date")
-    private LocalDateTime comment_created_date;
+    @Column(name = "comment_date")
+    private LocalDateTime comment_date;
 
     @Column(name="product_id",nullable = false)
     private Integer productId;
