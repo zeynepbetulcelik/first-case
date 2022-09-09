@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public class ProductCommentDTO {
 
     private Integer id;
     private String comment;
-    private Date commentDate;
+    private LocalDateTime commentDate;
     private Integer productId;
     private UUID userId;
 }
