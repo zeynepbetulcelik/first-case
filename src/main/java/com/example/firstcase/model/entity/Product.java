@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "product")
@@ -24,6 +25,6 @@ public class Product  implements Serializable {
     private float price;
 
     @Column(name = "expiration_date")
-    private LocalDateTime expiration_date;
+    private LocalDateTime expirationDate;
 
 }
