@@ -25,7 +25,7 @@ public class ProductComment implements Serializable {
     private String comment;
 
     @Column(name = "comment_date")
-    private Date commentDate;
+    private LocalDateTime commentDate;
 
     @Column(name="product_id",nullable = false)
     private Integer productId;
