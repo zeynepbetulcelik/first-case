@@ -4,7 +4,7 @@
 Application uses a number of open source projects to work properly:
 
 * Java 17- Primary Language
-* Spring boot - An open source Java-based framework used to create a micro Service.
+* Spring boot - An open source Java-based framework used to create a application.
 * Maven - Dependency Management
 * Postgresql 
 * Project will run under the http://localhost:8080 Note : 8080 is configurable port it can be changed via application.yaml file
