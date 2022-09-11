@@ -77,6 +77,9 @@ public class ProductServiceImpl implements ProductService {
         for(Product product : expireProducts){
             ProductDTO productDTO = new ProductDTO();
             BeanUtils.copyProperties(product,productDTO);
+            if(!Objects.isNull(product.getExpirationDate())){
+                productDTO.setExpirationDate(product.getExpirationDate().toString());
+            }
             productDTOS.add(productDTO);
         }
         return productDTOS;
@@ -85,10 +88,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getNonExpiredProducts() {
         List<ProductDTO>productDTOS = new ArrayList<>();
-        List<Product> expireProducts =productRepository.findByExpirationDateAfterOrExpirationDateIsNull(LocalDateTime.now());
-        for(Product product : expireProducts){
+        List<Product> nonExpireProducts =productRepository.findByExpirationDateAfterOrExpirationDateIsNull(LocalDateTime.now());
+        for(Product product : nonExpireProducts){
             ProductDTO productDTO = new ProductDTO();
             BeanUtils.copyProperties(product,productDTO);
+            if(!Objects.isNull(product.getExpirationDate())){
+                productDTO.setExpirationDate(product.getExpirationDate().toString());
+            }
             productDTOS.add(productDTO);
         }
         return productDTOS;
