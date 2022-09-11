@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
         }
         else{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy HH:mm:ss");
-            product.setExpirationDate( LocalDateTime.parse(productDTO.getExpirationDate(), formatter).plusHours(3));
+            product.setExpirationDate( LocalDateTime.parse(productDTO.getExpirationDate(), formatter));
         }
         product.setPrice(product.getPrice());
         productRepository.saveAndFlush(product);
@@ -62,17 +62,18 @@ public class ProductServiceImpl implements ProductService {
         ProductComment productComment = new ProductComment();
         productComment.setProductId(productId);
         productComment.setComment(productCommentDTO.getComment());
-        productComment.setCommentDate(LocalDateTime.now().plusHours(3));
+        productComment.setCommentDate(LocalDateTime.now());
         productComment.setUserId(user.getId());
         productCommentRepository.saveAndFlush(productComment);
         BeanUtils.copyProperties(productComment,productCommentDTO);
+        System.out.println(productComment.getCommentDate());
         return  productCommentDTO;
     }
 
     @Override
     public List<ProductDTO> getExpiredProducts() {
         List<ProductDTO>productDTOS = new ArrayList<>();
-        List<Product> expireProducts =productRepository.findByExpirationDateBefore(LocalDateTime.now().plusHours(3));
+        List<Product> expireProducts =productRepository.findByExpirationDateBefore(LocalDateTime.now());
         for(Product product : expireProducts){
             ProductDTO productDTO = new ProductDTO();
             BeanUtils.copyProperties(product,productDTO);
@@ -84,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getNonExpiredProducts() {
         List<ProductDTO>productDTOS = new ArrayList<>();
-        List<Product> expireProducts =productRepository.findByExpirationDateAfterOrExpirationDateIsNull(LocalDateTime.now().plusHours(3));
+        List<Product> expireProducts =productRepository.findByExpirationDateAfterOrExpirationDateIsNull(LocalDateTime.now());
         for(Product product : expireProducts){
             ProductDTO productDTO = new ProductDTO();
             BeanUtils.copyProperties(product,productDTO);

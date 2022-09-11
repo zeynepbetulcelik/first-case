@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +32,22 @@ public class ProductCommentServiceImpl implements ProductCommentService {
         }
         return productCommentDTOS;
     }
+
+    @Override
+    public List<ProductCommentDTO> getProductCommentByProductAndDates(Integer productId, String startingDate, String endingDate) {
+        System.out.println(LocalDateTime.now());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy HH:mm:ss");
+        LocalDateTime startingDateTime=LocalDateTime.parse(startingDate, formatter);
+        LocalDateTime endingDateTime = LocalDateTime.parse(endingDate,formatter);
+        List<ProductComment> productCommentsByDateAndId =
+                productCommentRepository.findProductCommentsByCommentDateBetweenAndProductId(startingDateTime,endingDateTime,productId);
+        List<ProductCommentDTO> productCommentDTOS=new ArrayList<>();
+        for(ProductComment productComment : productCommentsByDateAndId){
+            ProductCommentDTO productCommentDTO = new ProductCommentDTO();
+            BeanUtils.copyProperties(productComment,productCommentDTO);
+            productCommentDTOS.add(productCommentDTO);
+        }
+        return productCommentDTOS;
+    }
+
 }
