@@ -26,8 +26,5 @@ spring:
    enabled: true
    schemas: firstcase
 
-
-first-case:
-  app:
-    jwtSecret: ${JWT_SECRET:secret-local}
-    jwtExpirationMs: ${JWT_EXPIRATION_IN_MS:3600000}
+server:
+  port : 8080
