@@ -2,7 +2,6 @@ package com.example.firstcase.service;
 
 import com.example.firstcase.model.dto.ProductCommentDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ProductCommentService {
