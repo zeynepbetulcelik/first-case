@@ -45,13 +45,18 @@ public class ProductResource {
         return ResponseEntity.status(HttpStatus.OK).body(productService.createProductComment(productId, email, productCommentDTO));
     }
 
-    @GetMapping("comments")
+    @GetMapping("/comments-by-user")
     public ResponseEntity<List<ProductCommentDTO>> comments(@RequestParam("email") String email) {
         return ResponseEntity.status(HttpStatus.OK).body(productCommentService.getUserComments(email));
     }
-    @GetMapping("comments-by-date-and-product")
+    @GetMapping("/comments-by-date-and-product")
     public ResponseEntity<List<ProductCommentDTO>> commentsByDateAndProduct(@RequestParam("product-id") Integer productId,
                                                                             @RequestParam("starting-date") String startingDate,@RequestParam("ending-date") String endingDate ) {
         return ResponseEntity.status(HttpStatus.OK).body(productCommentService.getProductCommentByProductAndDates(productId,startingDate,endingDate));
+    }
+
+    @GetMapping("/comments-by-product")
+    public ResponseEntity<List<ProductCommentDTO>> commentsByProduct (@RequestParam("product-id") Integer productId){
+        return ResponseEntity.status(HttpStatus.OK).body(productCommentService.getProductCommentsByProduct(productId));
     }
 }

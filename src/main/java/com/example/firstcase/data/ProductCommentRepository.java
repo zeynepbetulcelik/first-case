@@ -16,4 +16,5 @@ public interface ProductCommentRepository extends JpaRepository<ProductComment,I
 
     List<ProductComment> findProductCommentsByUserId(UUID userId);
     List<ProductComment>findProductCommentsByCommentDateBetweenAndProductId(LocalDateTime startingDate, LocalDateTime endingDate, Integer productId);
+    List<ProductComment> findProductCommentsByProductId(Integer productId);
 }

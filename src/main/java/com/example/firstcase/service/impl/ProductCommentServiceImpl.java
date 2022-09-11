@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +37,6 @@ public class ProductCommentServiceImpl implements ProductCommentService {
 
     @Override
     public List<ProductCommentDTO> getProductCommentByProductAndDates(Integer productId, String startingDate, String endingDate) {
-        System.out.println(LocalDateTime.now());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy HH:mm:ss");
         LocalDateTime startingDateTime=LocalDateTime.parse(startingDate, formatter);
         LocalDateTime endingDateTime = LocalDateTime.parse(endingDate,formatter);
@@ -49,5 +50,19 @@ public class ProductCommentServiceImpl implements ProductCommentService {
         }
         return productCommentDTOS;
     }
+
+    @Override
+    public List<ProductCommentDTO> getProductCommentsByProduct(Integer productId) {
+        List<ProductComment> productCommentsByProduct =productCommentRepository.findProductCommentsByProductId(productId);
+            List<ProductCommentDTO>productCommentDTOS=new ArrayList<>();
+            for(ProductComment productComment: productCommentsByProduct){
+                ProductCommentDTO productCommentDTO = new ProductCommentDTO();
+                BeanUtils.copyProperties(productComment,productCommentDTO);
+                productCommentDTOS.add(productCommentDTO);
+            }
+            return productCommentDTOS;
+        }
+
+
 
 }
